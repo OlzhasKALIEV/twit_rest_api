@@ -9,7 +9,7 @@ app = Flask(__name__)
 class CustomJSONEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, Twit):
-            return {"body": o.body, "author": o.author, "like": o.like}
+            return {"body": o.body, "author": o.author}
         return super()
 
 
@@ -28,7 +28,7 @@ def creat_twit():
     ''' {"body": "Hello World", "author": "@Olzhas"}
     '''
     twit_json = request.get_json()
-    twit = Twit(twit_json["body"], twit_json["author"], twit_json["like"])
+    twit = Twit(twit_json["body"], twit_json["author"])
     jsonized = json.dumps(twit, cls=CustomJSONEncoder)
     twits.append(json.loads(jsonized))
     return make_response("Успех", 200)
