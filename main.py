@@ -2,6 +2,7 @@ import json
 
 from flask import Flask, jsonify, request, make_response
 from model.twit import Twit
+from model.user import User, get_users_comment
 
 app = Flask(__name__)
 
@@ -37,6 +38,13 @@ def creat_twit():
 @app.route('/twit', methods=["GET"])
 def read_twits():
     return jsonify({"twits": twits})
+
+
+@app.route('/twit/comment', methods=["GET", "POST"])
+def comment():
+    if request.method == "GET":
+        post_user = request.get_json()
+        return get_users_comment(post_user, twits)
 
 
 if __name__ == "__main__":
