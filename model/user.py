@@ -13,7 +13,7 @@ def get_users_comment(post_user, twits):
     for user in twits:
         for key, value in post_user.items():
             if value == user[key]:
-                return value
+                return user
             if value != user[key]:
                 continue
     return make_response("Такого пользователя нет", 400)
