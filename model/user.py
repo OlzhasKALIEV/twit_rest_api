@@ -17,3 +17,7 @@ def get_users_comment(post_user, twits):
             if value != user[key]:
                 continue
     return make_response("Такого пользователя нет", 400)
+
+
+fop = User("Olzhas")
+print(fop.user_comment("Loh"))

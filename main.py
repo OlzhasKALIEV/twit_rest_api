@@ -51,13 +51,12 @@ def get_post_users():
         get_post_user = get_users_comment(post_user, twits)
         return get_post_user
     if request.method == "POST":
-        ''' {"user_name": "@Olzhas"}
+        ''' {"user_name": "@Olzhas", "user_comment"}
         '''
         comment_post_user = request.get_json()
         user_post = User(comment_post_user["user_name"])
         user_post_comment = json.dumps(user_post, cls=CustomJSONEncoder)
-        user_post_comment = json.loads(user_post_comment)
-        return user_post_comment
+        return json.loads(user_post_comment)
 
 
 if __name__ == "__main__":
