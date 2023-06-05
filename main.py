@@ -45,6 +45,8 @@ def read_twits():
 @app.route('/twit/comment', methods=["GET", "POST"])
 def get_post_users():
     if request.method == "GET":
+        ''' {"author": "@Olzhas"}
+        '''
         post_user = request.get_json()
         get_post_user = get_users_comment(post_user, twits)
         return get_post_user
