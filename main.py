@@ -45,7 +45,7 @@ def read_twits():
 @app.route('/twit/comment', methods=["GET", "POST"])
 def get_post_users():
     if request.method == "GET":
-        ''' {"author": "@Olzhas"}
+        ''' {"author": "@Ray"}
         '''
         post_user = request.get_json()
         get_post_user = get_users_comment(post_user, twits)
@@ -53,7 +53,7 @@ def get_post_users():
         return get_post_user
 
     if request.method == "POST":
-        ''' {"user_name": "@Olzhas", "user_comment"}
+        ''' {"user_name": "@Olzhas", "user_comment: like"}
         '''
         comment_post_user = request.get_json()
         user_post = User(comment_post_user["user_name"])
