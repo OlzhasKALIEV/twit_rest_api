@@ -6,7 +6,7 @@ class User:
         self.user_name = user_name
 
     def user_comment(self, comment: str):
-        return comment, self.user_name
+        return comment
 
 
 def get_users_comment(post_user, twits):
@@ -17,7 +17,3 @@ def get_users_comment(post_user, twits):
             if value != user[key]:
                 continue
     return make_response("Такого пользователя нет", 400)
-
-
-fop = User("Olzhas")
-print(fop.user_comment("Loh"))

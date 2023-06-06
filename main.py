@@ -12,12 +12,12 @@ class CustomJSONEncoder(json.JSONEncoder):
         if isinstance(o, Twit):
             return {"body": o.body, "author": o.author}
         if isinstance(o, User):
-            return {"user_name": o.user_name}
+            return {"user_name": o.user_name, "user_comment": o.user_comment(request.get_json()["user_comment"])}
 
 
 app.json_encoder(CustomJSONEncoder)
 
-twits = list()
+twits = list()  # []
 comment_user = list()
 
 
@@ -49,14 +49,17 @@ def get_post_users():
         '''
         post_user = request.get_json()
         get_post_user = get_users_comment(post_user, twits)
+        comment_user.append(get_post_user["body"])
         return get_post_user
+
     if request.method == "POST":
         ''' {"user_name": "@Olzhas", "user_comment"}
         '''
         comment_post_user = request.get_json()
         user_post = User(comment_post_user["user_name"])
         user_post_comment = json.dumps(user_post, cls=CustomJSONEncoder)
-        return json.loads(user_post_comment)
+        comment_user.append(json.loads(user_post_comment))
+        return jsonify({"user_comment": comment_user})
 
 
 if __name__ == "__main__":
