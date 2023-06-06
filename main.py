@@ -28,7 +28,7 @@ def ping():
 
 @app.route('/twit', methods=["POST"])
 def creat_twit():
-    ''' {"body": "Hello World", "author": "@Olzhas"}
+    ''' {"body": "Hello World", "author": "@Ray"}
     '''
     twit_json = request.get_json()
     twit = Twit(twit_json["body"], twit_json["author"])
