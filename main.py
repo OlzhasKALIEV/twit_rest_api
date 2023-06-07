@@ -2,7 +2,7 @@ import json
 
 from flask import Flask, jsonify, request, make_response
 from model.twit import Twit
-from model.user import User, get_users_comment
+from model.user import User, get_users_comment, delete
 
 app = Flask(__name__)
 
@@ -60,6 +60,13 @@ def get_post_users():
         user_post_comment = json.dumps(user_post, cls=CustomJSONEncoder)
         comment_user.append(json.loads(user_post_comment))
         return jsonify({"user_comment": comment_user})
+
+
+@app.route('/twit/comment/delete', methods=["DELETE"])
+def delete_post():
+    post_user = request.get_json()
+    post_user = delete(post_user, twits)
+    return post_user
 
 
 if __name__ == "__main__":

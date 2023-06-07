@@ -17,3 +17,12 @@ def get_users_comment(post_user, twits):
             if value != user[key]:
                 continue
     return make_response("Такого пользователя нет", 400)
+
+
+def delete(post_user, twits):
+    for i in twits:
+        if i == post_user:
+            twits.remove(i)
+            return twits
+        else:
+            return make_response("Такого поста нет", 400)
