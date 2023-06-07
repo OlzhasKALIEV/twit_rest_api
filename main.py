@@ -62,7 +62,7 @@ def get_post_users():
         return jsonify({"user_comment": comment_user})
 
 
-@app.route('/twit/comment/delete', methods=["DELETE"])
+@app.route('/twit/post/delete', methods=["DELETE"])
 def delete_post():
     '''{"author": "@Ray","body": "Hello world"}
     '''
@@ -71,7 +71,7 @@ def delete_post():
     return post_user
 
 
-@app.route('/twit/comment/update', methods=["PUT"])
+@app.route('/twit/post/update', methods=["PUT"])
 def update_post_put():
     '''{"author": "@Ray","body": "And today, tomorrow, not everyone can watch. Or rather, not only everyone can watch, few can do it"}
     '''

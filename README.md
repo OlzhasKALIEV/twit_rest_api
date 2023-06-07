@@ -25,9 +25,9 @@ b. в инструкции необходимо указать примеры т
 
 # прочитать пост GET - localhost:5000/twit/comment '''{"author": "@Ray"}''' если пользователь не оставлял пост, то будет предупреждение "Такого пользователя нет"
 
-# удалить пост DELETE - localhost:5000/twit/comment/delete '''{"author": "@Ray"}''' от сервера вернется пустой список 
+# удалить пост DELETE - localhost:5000/twit/post/delete '''{"author": "@Ray"}''' от сервера вернется пустой список 
 
-# изменить пост PUT - localhost:5000/twit/comment/update '''{"author": "@Ray","body": "And today, tomorrow, not everyone can watch. Or rather, not only everyone can watch, few can do it"} '''
+# изменить пост PUT - localhost:5000/twit/post/update '''{"author": "@Ray","body": "And today, tomorrow, not everyone can watch. Or rather, not only everyone can watch, few can do it"} '''
 
 
 
