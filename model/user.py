@@ -26,3 +26,11 @@ def delete(post_user, twits):
             return twits
         else:
             return make_response("Такого поста нет", 400)
+
+
+def update_post(update, twits):
+    for i in twits:
+        for key, value in update.items():
+            if value == i[key]:
+                i["body"] = update["body"]
+    return twits

@@ -2,7 +2,7 @@ import json
 
 from flask import Flask, jsonify, request, make_response
 from model.twit import Twit
-from model.user import User, get_users_comment, delete
+from model.user import User, get_users_comment, delete, update_post
 
 app = Flask(__name__)
 
@@ -34,7 +34,7 @@ def creat_twit():
     twit = Twit(twit_json["body"], twit_json["author"])
     jsonized = json.dumps(twit, cls=CustomJSONEncoder)
     twits.append(json.loads(jsonized))
-    return make_response("Успех", 200)
+    return make_response("Пост добавлен", 200)
 
 
 @app.route('/twit', methods=["GET"])
@@ -64,9 +64,20 @@ def get_post_users():
 
 @app.route('/twit/comment/delete', methods=["DELETE"])
 def delete_post():
+    '''{"author": "@Ray","body": "Hello world"}
+    '''
     post_user = request.get_json()
     post_user = delete(post_user, twits)
     return post_user
+
+
+@app.route('/twit/comment/update', methods=["PUT"])
+def update_post_put():
+    '''{"author": "@Ray","body": "And today, tomorrow, not everyone can watch. Or rather, not only everyone can watch, few can do it"}
+    '''
+    update = request.get_json()
+    update = update_post(update, twits)
+    return update
 
 
 if __name__ == "__main__":
